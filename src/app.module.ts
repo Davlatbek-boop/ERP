@@ -10,6 +10,8 @@ import { Teacher } from './teacher/entities/teacher.entity';
 import { Student } from './student/entities/student.entity';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { CoursesModule } from './courses/courses.module';
+import { Course } from './courses/entities/course.entity';
 
 
 @Module({
@@ -29,13 +31,14 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
       password: process.env.PG_PASSWORD,
       database: process.env.PG_DB,
       autoLoadEntities: true,
-      entities: [Admin, Teacher, Student],
+      entities: [Admin, Teacher, Student, Course],
       synchronize: true, 
     }),
     AdminModule,
     TeacherModule,
     AuthModule,
     StudentModule,
+    CoursesModule,
   ],
   controllers: [],
   providers: [],

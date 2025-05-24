@@ -14,12 +14,31 @@ type Admin {
   phone: String!
 }
 
+type Course {
+  description: String!
+  duration: Float!
+  id: ID!
+  lessonDuration: Float!
+  lessontInAWeek: Float!
+  price: Float!
+  title: String!
+}
+
 input CreateAdminDto {
   email: String!
   firstName: String!
   lastName: String!
   password: String!
   phone: String!
+}
+
+input CreateCourseDto {
+  description: String!
+  duration: Float!
+  lessonDuration: Float!
+  lessontInAWeek: Float!
+  price: Float!
+  title: String!
 }
 
 input CreateStudentDto {
@@ -48,22 +67,27 @@ scalar DateTime
 
 type Mutation {
   createAdmin(createAdmin: CreateAdminDto!): Admin!
+  createCourse(createCoruse: CreateCourseDto!): Course!
   createStudent(createStudent: CreateStudentDto!): Student!
   createTeacher(createTeacher: CreateTeacherDto!): Teacher!
   registratsiyaAdmin(registratsiyaAdmin: CreateAdminDto!): Admin!
   removeAdmin(id: ID!): Float!
+  removeCourse(id: String!): Float!
   removeStudent(id: ID!): Float!
   removeTeacher(id: ID!): Float!
   updateAdmin(id: ID!, updateAdmin: UpdateAdminDto!): Admin!
+  updateCourse(id: String!, updateCoruse: UpdateCourseDto!): Course!
   updateStudent(id: ID!, updateStudent: UpdateStudentDto!): Student!
   updateTeacher(id: ID!, updateTeacher: UpdateTeacherDto!): Teacher!
 }
 
 type Query {
   findAllAdmins: [Admin!]!
+  findAllCourse: [Course!]!
   findAllStudent: [Student!]!
   findAllTeacher: [Teacher!]!
   findOneAdmin(id: ID!): Admin!
+  findOneCourse(id: String!): Course!
   findOneStudent(id: ID!): Student!
   findOneTeacher(id: ID!): Teacher!
 }
@@ -75,7 +99,7 @@ type Student {
   firstName: String!
   gender: String!
   hashed_refresh_token: String
-  id: Float!
+  id: ID!
   is_active: Boolean!
   lastName: String!
   password: String!
@@ -86,7 +110,7 @@ type Teacher {
   email: String!
   firstName: String!
   hashed_refresh_token: String
-  id: Float!
+  id: ID!
   is_active: Boolean!
   lastName: String!
   password: String!
@@ -100,6 +124,15 @@ input UpdateAdminDto {
   lastName: String
   password: String
   phone: String
+}
+
+input UpdateCourseDto {
+  description: String
+  duration: Float
+  lessonDuration: Float
+  lessontInAWeek: Float
+  price: Float
+  title: String
 }
 
 input UpdateStudentDto {
