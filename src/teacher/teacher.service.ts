@@ -28,27 +28,34 @@ export class TeacherService {
     return this.teacherRepo.findOneBy({id});
   }
 
-  update(id: number, updateTeacherDto: UpdateTeacherDto) {
-    return this.teacherRepo.update(id, updateTeacherDto);
+  async update(id: number, updateTeacherDto: UpdateTeacherDto) {
+    const teacher = await this.findOne(id)
+    if(!teacher){
+      throw new BadRequestException("Teacher topilmadi")
+    }
+
+    const newTeacher = await this.teacherRepo.update(id, updateTeacherDto);
+    return newTeacher
   }
 
   remove(id: number) {
-    return this.teacherRepo.delete(id);
+    this.teacherRepo.delete(id);
+    return id
   }
 
   findByEmail(email: string) {
     return this.teacherRepo.findOneBy({ email });
   }
 
-   async updateRefreshToken(adminId: number, refreshToken: string) {
+   async updateRefreshToken(teacherId: number, refreshToken: string) {
       const hashedToken = await bcrypt.hash(refreshToken, 7);
-      await this.teacherRepo.update(adminId, {
+      await this.teacherRepo.update(teacherId, {
         hashed_refresh_token: hashedToken,
       });
     }
   
-    async clearRefreshToken(adminId: number) {
-      await this.teacherRepo.update(adminId, {
+    async clearRefreshToken(teacherId: number) {
+      await this.teacherRepo.update(teacherId, {
         hashed_refresh_token: ""
       });
     }

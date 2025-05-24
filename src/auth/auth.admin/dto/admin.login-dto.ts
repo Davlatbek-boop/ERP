@@ -1,4 +1,9 @@
-export class AdminLoginDto{
-    email:string
-    password: string
+import { Field, InputType } from "@nestjs/graphql";
+
+@InputType()
+export class AdminLoginDto {
+  @Field()
+  email: string;
+  @Field()
+  password: string;
 }

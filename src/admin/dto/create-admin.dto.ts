@@ -1,18 +1,20 @@
+import { Field, InputType } from '@nestjs/graphql';
 import { ApiProperty } from '@nestjs/swagger';
 
+@InputType()
 export class CreateAdminDto {
-  @ApiProperty({ example: 'Ali', description: 'Adminning ismi' })
+  @Field()
   firstName: string;
 
-  @ApiProperty({ example: 'Valiyev', description: 'Adminning familiyasi' })
+  @Field()
   lastName: string;
 
-  @ApiProperty({ example: 'ali@example.com', description: 'Yagona email manzili' })
+  @Field()
   email: string;
 
-  @ApiProperty({ example: '+998901234567', description: 'Telefon raqami' })
+  @Field()
   phone: string;
 
-  @ApiProperty({ example: 'StrongP@ssw0rd', description: 'Kiritiladigan parol' })
+  @Field()
   password: string;
 }

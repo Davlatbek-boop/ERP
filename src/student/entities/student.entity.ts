@@ -3,7 +3,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @ObjectType()
 @Entity()
-export class Teacher {
+export class Student {
   @Field()
   @PrimaryGeneratedColumn()
   id: number;
@@ -28,15 +28,23 @@ export class Teacher {
   @Column()
   password: string;
 
-  @Field({defaultValue: true})
+  @Field({ defaultValue: "another" })
+  @Column({ default: "another" })
+  gender: string;
+
+  @Field()
+  @Column()
+  date_of_birth: Date;
+
+  @Field({ defaultValue: "" })
+  @Column({ default: "" })
+  avatar_url: string;
+
+  @Field({ defaultValue: true })
   @Column({ default: true })
   is_active: boolean;
 
-  @Field({defaultValue: "meneger"})
-  @Column({default: "meneger"})
-  role: string
-
-  @Field({nullable: true})
-  @Column({nullable: true})
-  hashed_refresh_token: string
+  @Field({ nullable: true })
+  @Column({ nullable: true })
+  hashed_refresh_token: string;
 }

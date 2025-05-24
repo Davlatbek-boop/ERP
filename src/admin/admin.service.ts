@@ -28,12 +28,18 @@ export class AdminService {
     return this.adminRepo.findOneBy({ id });
   }
 
-  update(id: number, updateAdminDto: UpdateAdminDto) {
-    return this.adminRepo.update(id, updateAdminDto);
+  async update(id: number, updateAdminDto: UpdateAdminDto) {
+    const admin = await this.findOne(id);
+    if(!admin){
+      throw new BadRequestException("Admin not found")
+    }
+    const newAdmin = await this.adminRepo.update(id, updateAdminDto);
+    return newAdmin;
   }
 
   remove(id: number) {
-    return this.adminRepo.delete(id);
+    this.adminRepo.delete(id);
+    return id
   }
 
   findByEmail(email: string) {
@@ -49,7 +55,7 @@ export class AdminService {
 
   async clearRefreshToken(adminId: number) {
     await this.adminRepo.update(adminId, {
-      hashed_refresh_token: ""
+      hashed_refresh_token: "",
     });
   }
 }
