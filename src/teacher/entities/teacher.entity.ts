@@ -1,10 +1,11 @@
 import { Field, ID, ObjectType } from "@nestjs/graphql";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { TeacherGroup } from "../../teacher-groups/entities/teacher-group.entity";
 
 @ObjectType()
 @Entity()
 export class Teacher {
-  @Field(()=> ID)
+  @Field(() => ID)
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -28,15 +29,19 @@ export class Teacher {
   @Column()
   password: string;
 
-  @Field({defaultValue: true})
+  @Field({ defaultValue: true })
   @Column({ default: true })
   is_active: boolean;
 
-  @Field({defaultValue: "meneger"})
-  @Column({default: "meneger"})
-  role: string
+  @Field({ defaultValue: "meneger" })
+  @Column({ default: "meneger" })
+  role: string;
 
-  @Field({nullable: true})
-  @Column({nullable: true})
-  hashed_refresh_token: string
+  @Field({ nullable: true })
+  @Column({ nullable: true })
+  hashed_refresh_token: string;
+
+  @OneToMany((type) => TeacherGroup, (teacherGroup) => teacherGroup.teacher)
+  @Field((type) => TeacherGroup)
+  teacherGroup: TeacherGroup;
 }

@@ -1,10 +1,11 @@
 import { Field, ID, ObjectType } from "@nestjs/graphql";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { StudentGroup } from "../../student-groups/entities/student-group.entity";
 
 @ObjectType()
 @Entity()
 export class Student {
-  @Field(()=> ID)
+  @Field(() => ID)
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -47,4 +48,8 @@ export class Student {
   @Field({ nullable: true })
   @Column({ nullable: true })
   hashed_refresh_token: string;
+
+  @OneToMany((type) => StudentGroup, (studentGroup) => studentGroup.student)
+  @Field((type) => StudentGroup)
+  studentGroup: StudentGroup;
 }

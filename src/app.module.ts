@@ -12,6 +12,10 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { CoursesModule } from './courses/courses.module';
 import { Course } from './courses/entities/course.entity';
+import { GroupsModule } from './groups/groups.module';
+import { StudentGroupsModule } from './student-groups/student-groups.module';
+import { TeacherGroupsModule } from './teacher-groups/teacher-groups.module';
+import { SchedulesModule } from './schedules/schedules.module';
 
 
 @Module({
@@ -39,6 +43,10 @@ import { Course } from './courses/entities/course.entity';
     AuthModule,
     StudentModule,
     CoursesModule,
+    GroupsModule,
+    StudentGroupsModule,
+    TeacherGroupsModule,
+    SchedulesModule,
   ],
   controllers: [],
   providers: [],
