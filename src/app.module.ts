@@ -17,6 +17,10 @@ import { StudentGroupsModule } from './student-groups/student-groups.module';
 import { TeacherGroupsModule } from './teacher-groups/teacher-groups.module';
 import { SchedulesModule } from './schedules/schedules.module';
 import { AttendancesModule } from './attendances/attendances.module';
+import { GradesModule } from './grades/grades.module';
+import { HomeworkSubmissionsModule } from './homework-submissions/homework-submissions.module';
+import { HomeworkModule } from './homework/homework.module';
+import { MediaModule } from './media/media.module';
 
 
 @Module({
@@ -49,6 +53,10 @@ import { AttendancesModule } from './attendances/attendances.module';
     TeacherGroupsModule,
     SchedulesModule,
     AttendancesModule,
+    GradesModule,
+    HomeworkSubmissionsModule,
+    HomeworkModule,
+    MediaModule,
   ],
   controllers: [],
   providers: [],

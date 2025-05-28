@@ -9,5 +9,6 @@ import { GroupsResolver } from './groups.resolver';
   imports: [TypeOrmModule.forFeature([Group])],
   controllers: [GroupsController],
   providers: [GroupsService, GroupsResolver],
+  exports: [GroupsService]
 })
 export class GroupsModule {}
