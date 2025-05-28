@@ -16,6 +16,7 @@ import { GroupsModule } from './groups/groups.module';
 import { StudentGroupsModule } from './student-groups/student-groups.module';
 import { TeacherGroupsModule } from './teacher-groups/teacher-groups.module';
 import { SchedulesModule } from './schedules/schedules.module';
+import { AttendancesModule } from './attendances/attendances.module';
 
 
 @Module({
@@ -47,6 +48,7 @@ import { SchedulesModule } from './schedules/schedules.module';
     StudentGroupsModule,
     TeacherGroupsModule,
     SchedulesModule,
+    AttendancesModule,
   ],
   controllers: [],
   providers: [],
